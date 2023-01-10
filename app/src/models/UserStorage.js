@@ -4,7 +4,7 @@ class UserStorage {
   static #users = {
     id : ["woorimIT", "나개발", "김팀장"],
     psword : ["1234", "1234", "123456"],
-    name : ["우리밋","나개발","김팀장ㄴ"]
+    name : ["우리밋","나개발","김팀장"]
   };
 
   static getUsers(...fields){
@@ -15,8 +15,20 @@ class UserStorage {
       }
       return newUsers;
     },{})
-    console.log(newUsers);
+    console.log(newUsers); 
     return ;
+  }
+
+  static getUserinfo(id){
+    const users = this.#users;
+    const idx = users.id.indexOf(id);
+    const usersKeys = Object.keys(users)
+    const userInfo = usersKeys.reduce((newUser,info)=>{
+      newUser[info]=users[info][idx]
+      return newUser;
+    },{})
+
+    return userInfo;
   }
 }
 
